@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OOO의 반짝이는 고양이 자기소개</title>
+  <style>
+    :root {
+      --ink: #fffaf5;
+      --muted: #d8d1e8;
+      --night: #100814;
+      --pink: #ff4fd8;
+      --cyan: #42f5ff;
+      --gold: #ffe66d;
+      --lime: #92ff7a;
+      --line: rgba(255, 255, 255, 0.22);
+      --glass: rgba(255, 255, 255, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, "Noto Sans KR", sans-serif;
+      color: var(--ink);
+      background:
+        linear-gradient(115deg, #100814 0%, #271035 34%, #063f4b 68%, #173e24 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background:
+        repeating-linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.06) 0,
+          rgba(255, 255, 255, 0.06) 1px,
+          transparent 1px,
+          transparent 72px
+        ),
+        repeating-linear-gradient(
+          0deg,
+          rgba(255, 255, 255, 0.04) 0,
+          rgba(255, 255, 255, 0.04) 1px,
+          transparent 1px,
+          transparent 72px
+        );
+      pointer-events: none;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: -30%;
+      z-index: -1;
+      background:
+        conic-gradient(
+          from 160deg,
+          rgba(255, 79, 216, 0.2),
+          rgba(66, 245, 255, 0.16),
+          rgba(255, 230, 109, 0.18),
+          rgba(146, 255, 122, 0.12),
+          rgba(255, 79, 216, 0.2)
+        );
+      animation: auroraSpin 18s linear infinite;
+      filter: blur(20px);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .page {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .hero {
+      min-height: 86vh;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+      gap: 38px;
+      align-items: center;
+      padding: 56px 0 34px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 18px;
+      color: var(--gold);
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .spark {
+      width: 12px;
+      height: 12px;
+      background: var(--gold);
+      clip-path: polygon(50% 0, 60% 38%, 100% 50%, 60% 62%, 50% 100%, 40% 62%, 0 50%, 40% 38%);
+      box-shadow: 0 0 18px var(--gold);
+      animation: twinkle 1.5s ease-in-out infinite alternate;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin-bottom: 22px;
+      font-size: clamp(44px, 8vw, 86px);
+      line-height: 0.98;
+      letter-spacing: 0;
+    }
+
+    .glitter-text {
+      color: transparent;
+      background: linear-gradient(90deg, #ffffff, var(--gold), var(--pink), var(--cyan), #ffffff);
+      background-size: 240% auto;
+      background-clip: text;
+      -webkit-background-clip: text;
+      animation: glitterText 4s linear infinite;
+      text-shadow: 0 0 28px rgba(255, 79, 216, 0.22);
+    }
+
+    .intro {
+      max-width: 620px;
+      margin-bottom: 28px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.75;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .badge-row li {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px 13px;
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.09);
+      box-shadow: 0 0 20px rgba(66, 245, 255, 0.08);
+      font-weight: 700;
+    }
+
+    .hero-card {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.07));
+      box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.38),
+        0 0 48px rgba(255, 79, 216, 0.24),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      z-index: -1;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--pink), var(--gold), var(--cyan), var(--lime));
+      filter: blur(14px);
+      opacity: 0.55;
+    }
+
+    .hero-image {
+      overflow: hidden;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.26);
+      background: #1b1223;
+    }
+
+    .hero-image img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      filter: saturate(1.25) contrast(1.05);
+    }
+
+    .hero-caption {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: center;
+      padding: 16px 6px 2px;
+    }
+
+    .hero-caption strong {
+      display: block;
+      font-size: 20px;
+    }
+
+    .hero-caption span {
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .cat-level {
+      min-width: 88px;
+      border: 1px solid rgba(255, 230, 109, 0.55);
+      border-radius: 8px;
+      padding: 10px;
+      color: var(--gold);
+      text-align: center;
+      font-weight: 800;
+      box-shadow: inset 0 0 20px rgba(255, 230, 109, 0.12);
+    }
+
+    .section {
+      padding: 42px 0;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .section-header h2 {
+      margin-bottom: 0;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.05;
+    }
+
+    .section-header p {
+      max-width: 420px;
+      margin-bottom: 4px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .breed-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .breed-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.11);
+      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.24);
+      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .breed-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255, 230, 109, 0.8);
+      box-shadow: 0 24px 58px rgba(0, 0, 0, 0.34), 0 0 28px rgba(255, 230, 109, 0.18);
+    }
+
+    .breed-card img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 11;
+      object-fit: cover;
+      background: #1b1223;
+    }
+
+    .breed-body {
+      padding: 18px;
+    }
+
+    .breed-name {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .breed-name h3 {
+      margin-bottom: 0;
+      font-size: 22px;
+    }
+
+    .breed-name span {
+      flex: 0 0 auto;
+      border: 1px solid rgba(66, 245, 255, 0.55);
+      border-radius: 8px;
+      padding: 6px 8px;
+      color: var(--cyan);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .breed-body p {
+      margin-bottom: 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .about-box {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 22px;
+      background: rgba(0, 0, 0, 0.22);
+    }
+
+    .about-box h3 {
+      margin-bottom: 12px;
+      color: var(--gold);
+      font-size: 20px;
+    }
+
+    .about-box p {
+      margin-bottom: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .closing {
+      margin: 34px 0 58px;
+      border: 1px solid rgba(255, 230, 109, 0.4);
+      border-radius: 8px;
+      padding: 28px;
+      background: linear-gradient(135deg, rgba(255, 230, 109, 0.16), rgba(255, 79, 216, 0.13), rgba(66, 245, 255, 0.12));
+      box-shadow: 0 0 48px rgba(255, 230, 109, 0.12);
+    }
+
+    .closing p {
+      margin-bottom: 0;
+      font-size: 20px;
+      line-height: 1.7;
+    }
+
+    @keyframes auroraSpin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes glitterText {
+      to {
+        background-position: 240% center;
+      }
+    }
+
+    @keyframes twinkle {
+      from {
+        transform: scale(0.85) rotate(0deg);
+        opacity: 0.65;
+      }
+
+      to {
+        transform: scale(1.15) rotate(25deg);
+        opacity: 1;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .hero {
+        min-height: auto;
+        grid-template-columns: 1fr;
+        padding-top: 42px;
+      }
+
+      .hero-card {
+        max-width: 560px;
+      }
+
+      .section-header {
+        display: block;
+      }
+
+      .section-header p {
+        margin-top: 12px;
+      }
+
+      .breed-grid,
+      .about-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .page {
+        width: min(100% - 24px, 1120px);
+      }
+
+      .hero {
+        gap: 28px;
+      }
+
+      .intro {
+        font-size: 16px;
+      }
+
+      .hero-caption {
+        grid-template-columns: 1fr;
+      }
+
+      .cat-level {
+        width: 100%;
+      }
+
+      .breed-grid,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .closing {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero" aria-label="OOO 자기소개">
+      <div>
+        <p class="eyebrow"><span class="spark" aria-hidden="true"></span>Glitter Cat Profile</p>
+        <h1><span class="glitter-text">OOO</span>의 반짝이는 고양이 월드</h1>
+        <p class="intro">
+          안녕하세요. 저는 새로운 것을 배우고 직접 만들어 보는 일을 좋아하는 OOO입니다.
+          Git처럼 차근차근 기록하고, 고양이처럼 호기심 있게 탐색하며 성장하고 있습니다.
+        </p>
+        <ul class="badge-row" aria-label="관심 키워드">
+          <li>웹 개발</li>
+          <li>Git</li>
+          <li>협업</li>
+          <li>문제 해결</li>
+          <li>고양이 취향 확실함</li>
+        </ul>
+      </div>
+
+      <aside class="hero-card" aria-label="대표 고양이 이미지">
+        <figure class="hero-image">
+          <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="반짝이는 분위기의 고양이">
+        </figure>
+        <div class="hero-caption">
+          <div>
+            <strong>오늘의 소개 콘셉트</strong>
+            <span>화려함, 호기심, 성장 에너지를 고양이 테마로 담았습니다.</span>
+          </div>
+          <div class="cat-level">CAT<br>MAX</div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section" aria-labelledby="cat-breeds-title">
+      <div class="section-header">
+        <h2 id="cat-breeds-title">고양이 종류 컬렉션</h2>
+        <p>최소 5개보다 넉넉하게 6종을 넣었습니다. 각 카드에는 품종별 분위기를 짧게 정리했습니다.</p>
+      </div>
+
+      <div class="breed-grid">
+        <article class="breed-card">
+          <img src="https://loremflickr.com/640/440/persian,cat?lock=11" alt="페르시안 고양이">
+          <div class="breed-body">
+            <div class="breed-name">
+              <h3>페르시안</h3>
+              <span>Luxury</span>
+            </div>
+            <p>풍성한 털과 우아한 분위기가 매력적인 차분한 고양이입니다.</p>
+          </div>
+        </article>
+
+        <article class="breed-card">
+          <img src="https://loremflickr.com/640/440/siamese,cat?lock=12" alt="샴 고양이">
+          <div class="breed-body">
+            <div class="breed-name">
+              <h3>샴</h3>
+              <span>Talker</span>
+            </div>
+            <p>파란 눈과 또렷한 포인트 무늬, 활발한 표현력이 돋보입니다.</p>
+          </div>
+        </article>
+
+        <article class="breed-card">
+          <img src="https://loremflickr.com/640/440/mainecoon,cat?lock=13" alt="메인쿤 고양이">
+          <div class="breed-body">
+            <div class="breed-name">
+              <h3>메인쿤</h3>
+              <span>Giant</span>
+            </div>
+            <p>큰 체격과 부드러운 성격으로 든든한 존재감을 보여줍니다.</p>
+          </div>
+        </article>
+
+        <article class="breed-card">
+          <img src="https://loremflickr.com/640/440/bengal,cat?lock=14" alt="벵갈 고양이">
+          <div class="breed-body">
+            <div class="breed-name">
+              <h3>벵갈</h3>
+              <span>Wild</span>
+            </div>
+            <p>표범 같은 무늬와 넘치는 활동성으로 시선을 확 끌어당깁니다.</p>
+          </div>
+        </article>
+
+        <article class="breed-card">
+          <img src="https://loremflickr.com/640/440/russianblue,cat?lock=15" alt="러시안 블루 고양이">
+          <div class="breed-body">
+            <div class="breed-name">
+              <h3>러시안 블루</h3>
+              <span>Silver</span>
+            </div>
+            <p>은빛 털과 초록빛 눈, 조용하고 신중한 매력이 특징입니다.</p>
+          </div>
+        </article>
+
+        <article class="breed-card">
+          <img src="https://loremflickr.com/640/440/scottishfold,cat?lock=16" alt="스코티시 폴드 고양이">
+          <div class="breed-body">
+            <div class="breed-name">
+              <h3>스코티시 폴드</h3>
+              <span>Round</span>
+            </div>
+            <p>접힌 귀와 동그란 인상이 사랑스러운 분위기를 만듭니다.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="about-title">
+      <div class="section-header">
+        <h2 id="about-title">OOO 소개</h2>
+        <p>고양이 카드만큼 반짝이도록, 자기소개도 또렷하게 정리했습니다.</p>
+      </div>
+
+      <div class="about-grid">
+        <article class="about-box">
+          <h3>배우는 자세</h3>
+          <p>모르는 부분을 그냥 넘기지 않고 질문하며 꾸준히 학습합니다.</p>
+        </article>
+
+        <article class="about-box">
+          <h3>협업 방식</h3>
+          <p>작업 과정을 기록하고 공유하면서 팀원과 함께 좋은 결과를 만듭니다.</p>
+        </article>
+
+        <article class="about-box">
+          <h3>성장 목표</h3>
+          <p>작은 실천을 쌓아 더 믿음직한 개발자로 성장하는 것이 목표입니다.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="closing" aria-label="마무리 한마디">
+      <p>
+        오늘도 반짝이는 호기심으로 배우고, 만들고, 기록하겠습니다.
+        OOO의 Git 여정은 계속됩니다.
+      </p>
+    </section>
+  </main>
+</body>
+</html>
