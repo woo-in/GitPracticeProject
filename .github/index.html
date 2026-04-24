@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>낭만 가득 고양이 카페 가이드</title>
+    <style>
+        :root {
+            --primary-color: #f8ad9d;
+            --secondary-color: #ffdab9;
+            --text-color: #4a4a4a;
+            --bg-color: #fffaf0;
+        }
+
+        body {
+            font-family: 'Pretendard', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+
+        header h1 { margin: 0; font-size: 2.5rem; }
+        header p { margin-top: 0.5rem; font-weight: 300; }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        section {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        h2::before { content: '🐾 '; margin-right: 10px; }
+
+        .tip-list { list-style: none; padding: 0; }
+        .tip-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .tip-list li::before {
+            content: '✔';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        th, td {
+            border: 1px solid #eee;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th { background-color: var(--secondary-color); }
+
+        .cat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .cat-card {
+            background: var(--bg-color);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #ffe4e1;
+        }
+
+        .cat-card h3 { margin-top: 0; color: #d88a7b; }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>고양이 카페 제대로 즐기기 🐾</h1>
+    <p>귀여운 냥이들과 함께하는 힐링 타임을 위한 완벽 가이드</p>
+</header>
+
+<div class="container">
+    <section>
+        <h2>고양이와 친해지는 법</h2>
+        <ul class="tip-list">
+            <li><strong>눈인사를 나누세요:</strong> 고양이를 빤히 쳐다보기보다 천천히 눈을 깜빡여(눈키스) 경계심을 풀어주세요.</li>
+            <li><strong>자세는 낮게:</strong> 서 있는 큰 사람은 고양이에게 위협적일 수 있습니다. 바닥에 앉아 고양이가 먼저 다가오길 기다리세요.</li>
+            <li><strong>간식은 만능 열쇠:</strong> 카페에서 판매하는 전용 간식을 활용하면 순식간에 인기쟁이가 될 수 있습니다.</li>
+            <li><strong>장난감 활용:</strong> 낚싯대 장난감을 머리 위가 아닌, 바닥에서 쥐가 움직이듯 흔들어주면 사냥 본능을 자극할 수 있어요.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>이용 금액 안내</h2>
+        <p>일반적으로 입장료에 음료 한 잔이 포함된 경우가 많습니다.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>구분</th>
+                    <th>평균 가격대</th>
+                    <th>비고</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>성인 입장료</td>
+                    <td>9,000원 ~ 12,000원</td>
+                    <td>음료 포함 기준</td>
+                </tr>
+                <tr>
+                    <td>학생 입장료</td>
+                    <td>8,000원 ~ 10,000원</td>
+                    <td>교복 또는 학생증 지참</td>
+                </tr>
+                <tr>
+                    <td>고양이 간식</td>
+                    <td>2,000원 ~ 4,000원</td>
+                    <td>츄르, 닭가슴살 등</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>카페에서 자주 만나는 친구들</h2>
+        <div class="cat-grid">
+            <div class="cat-card">
+                <h3>스코티시 폴드</h3>
+                <p>접힌 귀와 둥근 얼굴이 특징이며 성격이 매우 순합니다.</p>
+            </div>
+            <div class="cat-card">
+                <h3>러시안 블루</h3>
+                <p>은빛 감도는 회색 털을 가졌으며 조용하고 온순합니다.</p>
+            </div>
+            <div class="cat-card">
+                <h3>렉돌 (Ragdoll)</h3>
+                <p>안으면 인형처럼 몸을 맡기는 '봉제인형' 같은 고양이입니다.</p>
+            </div>
+            <div class="cat-card">
+                <h3>코리안 숏헤어</h3>
+                <p>친근하고 활동적이며 각기 다른 매력의 무늬를 가졌습니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <section style="border: 2px solid #ffb7b7;">
+        <h2 style="color: #e57373;">방문 전 꼭 지켜주세요!</h2>
+        <ul class="tip-list">
+            <li>잠자고 있는 고양이를 억지로 깨우지 마세요.</li>
+            <li>억지로 안아 올리는 행동은 고양이가 싫어해요.</li>
+            <li>플래시를 터뜨려 사진을 찍으면 고양이 눈에 해롭습니다.</li>
+            <li>사람이 먹는 음식이나 외부 간식은 절대 주지 마세요.</li>
+        </ul>
+    </section>
+</div>
+
+<footer>
+    &copy; 2026 고양이 카페 가이드 서비스. All rights reserved.
+</footer>
+
+</body>
+</html>
