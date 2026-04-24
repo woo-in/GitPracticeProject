@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+ 13-feature-정우인님을-소개하는-페이지-개발
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky"
   },
@@ -16,4 +17,11 @@
     "lint-staged": "^16.4.0",
     "prettier": "^3.8.3"
   }
+
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+ main
 }
